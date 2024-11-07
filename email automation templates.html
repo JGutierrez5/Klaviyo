@@ -1,0 +1,91 @@
+<!--Klaviyo exercise for email automation-->
+
+<html>
+
+<div>{{ event.Name|default:'' }} </div> <!--Name of the product-->
+{%catalog event.ProductID%} <!--Catalog ID (Shopify)-->
+<div>Price: ${{ catalog_item.metadata.price|floatformat:0 }} </div><!--Raw price of the metadata-->
+<div>{{ event.ProductID|default:'' }} </div>  <!--display of the catalogID-->
+{% endcatalog %}
+
+</html>
+
+<!--Klaviyo exercise for viewed product flow-->
+
+<html>
+
+<img src="{{ event.ImageURL|default:'' }}" alt="Product Image">
+<!--event name requires a piped lookup to work-->
+<div>{{ event.Name|default:'' }} </div>
+{%catalog event.ProductID%}
+<div>Price: ${{ catalog_item.metadata.price|floatformat:0 }} </div>
+<div style="text-align: center;">
+<a href="{{ event.ShoppingCartURL|default:'https://ftg61a-md.myshopify.com/cart' }}" style="display: inline-block; background-color: #28a745; color: #ffffff; padding: 12px 25px; text-align: center; text-decoration: none; font-size: 16px; font-family: Arial, sans-serif; border-radius: 5px; border: none;">
+   Go to Your Shopping Cart
+</a>
+</div>
+<!--CARThttps://ftg61a-md.myshopify.com/cart-->
+<!--<div>{{ event.ProductID|default:'' }} </div> Shopify catalogID -->
+{% endcatalog %}
+
+
+    </html>
+
+
+<!--Klaviyo exercise for viewed product flow-->
+
+<html>
+
+<img src="{{ event.ImageURL|default:'' }}" alt="Product Image">
+<!--WHY DID IT ASK FOR A LOOKUP THIS TIME?-->
+<div>{{ event|lookup:'Product Name'|default:'' }}</div>
+{%catalog event.ProductID%}
+<div>Price: ${{ catalog_item.metadata.price|floatformat:0 }} </div>
+<div style="text-align: center;">
+<!--CARThttps://ftg61a-md.myshopify.com/cart CAN IT BE SET TO A DEFAULT, MAYBE A MISSING VARIABLE?-->
+<!-- {{ event.URL|default:'' }} discarded on this snippet and replaced with ShoppingCartURL-->    
+<a href="{{ event.ShoppingCartURL|default:'https://ftg61a-md.myshopify.com/cart' }}" style="display: inline-block; background-color: #28a745; color: #ffffff; padding: 12px 25px; text-align: center; text-decoration: none; font-size: 16px; font-family: Arial, sans-serif; border-radius: 5px; border: none;">
+   Go to Your Shopping Cart
+</a>
+</div>
+<!--CARThttps://ftg61a-md.myshopify.com/cart-->
+<!--<div>{{ event.ProductID|default:'' }} </div> Shopify catalogID -->
+{% endcatalog %}
+
+
+    </html>
+
+<!--Klaviyo split exercise for Checkout started-->
+
+<html>
+<!--{{ event.extra.line_items.0.product.images.0.src|default:'' }}-->
+<img src="{{ event.extra.line_items.0.product.images.0.src|default:'' }}" alt="Product Image" style="float: left; margin-right: 20px; max-width: 100%; height: auto;">
+<img src="{{ event.extra.line_items.1.product.images.0.src|default:'' }}" alt="Product Image" style="float: left; margin-right: 20px; max-width: 100%; height: auto;">
+<div style="text-align: left;">
+    Hello World
+</div>
+
+    </html>
+
+<html>
+
+<div style="text-align: left;">
+<pre style="white-space: pre-line;"><span style="color: rgb(0, 0, 0); font-weight: bold; font-size: 16px;"><a href="{{ organization.url|trim_slash }}/products/{{ item.product.handle }}" style="font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; color: rgb(0, 0, 0);">{{ item.product.title }}</a></span></pre>
+<p><span style="font-size: 16px; color: rgb(0, 0, 0);">Quantity: {{ item.quantity|floatformat:0 }} &mdash; Total: {%catalog event.product.id%}{% currency_format item.metadata.price|floatformat:0 %}{% endcatalog %}</span></p>
+</div>
+
+</html>
+
+
+{% if item.product.variant.images.0.src %}{{item.product.variant.images.0.src}}{%else%}{{item.product.images.0.src|missing_product_image}}{%endif%}
+{{ organization.url|trim_slash }}/products/{{ item.product.handle }}
+
+
+<div style="text-align: left;">
+    <pre style="white-space: pre-line;"><span style="color: rgb(0, 0, 0); font-weight: bold; font-size: 16px;"><a href="{{ organization.url|trim_slash }}/products/{{ item.product.handle }}" style="font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; color: rgb(0, 0, 0);">{{ item.product.title }}</a></span></pre>
+    <p><span style="font-size: 16px; color: rgb(0, 0, 0);">Quantity: {{ item.quantity|floatformat:0 }} &mdash; Total: {% currency_format item.line_price|floatformat:2 %}</span></p>
+    </div>
+
+
+
+
