@@ -1,0 +1,62 @@
+<!--<iframe id="klaviyo_subscribe_page" 
+        src="https://manage.kmail-lists.com/subscriptions/subscribe?a=WPECNJ&g=VvHTpN" 
+        width="100%" 
+        scrolling="no" 
+        style="border: none; height: auto;">
+</iframe>
+<script type="text/javascript" src="//a.klaviyo.com/media/js/lib/iframeresizer.js"></script>
+<script type="text/javascript">
+  iFrameResize({
+    log: true, // Useful for debugging if you're not seeing resizing work
+    heightCalculationMethod: 'taggedElement', // You can use 'bodyScroll' or 'max' too
+  }, '#klaviyo_subscribe_page');
+</script>-->
+<!--<iframe id="klaviyo_subscribe_page" 
+        src="https://manage.kmail-lists.com/subscriptions/subscribe?a=WPECNJ&g=VvHTpN" 
+        width="100%" 
+        scrolling="no" 
+        style="border: none; min-height: 500px;">
+</iframe>
+
+<script async type="text/javascript" src="//a.klaviyo.com/media/js/lib/iframeresizer.js"></script>
+<script type="text/javascript">
+  iFrameResize({
+    log: true, // Helps with debugging
+    checkOrigin: false, // If the iframe content is from another domain
+    heightCalculationMethod: 'max', // Try 'max' if 'taggedElement' isn't working
+    resizedCallback: function (messageData) {
+      console.log('Iframe resized:', messageData);
+    }
+  }, '#klaviyo_subscribe_page');
+</script>-->
+
+
+<!--<iframe id="klaviyo_subscribe_page" 
+        src="https://manage.kmail-lists.com/subscriptions/subscribe?a=WPECNJ&g=VvHTpN" 
+        width="20%" 
+        scrolling="no" 
+        style="border: none; min-height: 1000px;">
+</iframe>
+<script type="text/javascript">
+    iFrameResize({
+      log: true, // Log resizing information for debugging
+      heightCalculationMethod: 'bodyScroll', // or 'max'
+      checkOrigin: false, // If the iframe content is from a different origin
+      resizedCallback: function (messageData) {
+        console.log('Iframe resized:', messageData); // Useful for debugging
+      }
+    }, '#klaviyo_subscribe_page');
+  </script>-->
+
+<!--FINAL VERSION, RESIZABLE-->
+  <iframe id="klaviyo_subscribe_page" src="https://manage.kmail-lists.com/subscriptions/subscribe?a=WPECNJ&g=VvHTpN&embed=1" seamless="seamless" width="170%" scrolling="no" style="border: none; min-height: 700px; transform: scale(0.6); transform-origin: 0 0;"></iframe> 
+  <script type="text/javascript">
+      iFrameResize({
+        log: true, // Log resizing information for debugging
+        heightCalculationMethod: 'bodyScroll', // or 'max'
+        checkOrigin: false, // If the iframe content is from a different origin
+        resizedCallback: function (messageData) {
+          console.log('Iframe resized:', messageData); // Useful for debugging
+        }
+      }, '#klaviyo_subscribe_page');
+    </script>
